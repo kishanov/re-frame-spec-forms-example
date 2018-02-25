@@ -2,7 +2,9 @@
   (:require [re-frame.core :as re-frame]
             [re-frame-spec-forms.events :as events]
             [re-frame-spec-forms.subs :as subs]
-            [re-frame-spec-forms.routes :as routes]))
+            [re-frame-spec-forms.routes :as routes]
+
+            [re-frame-spec-forms.steps.layout :as layout]))
 
 
 
@@ -31,4 +33,7 @@
        [:div.four.wide.column
         [steps route-key]]
        [:div.twelve.wide.column
-        [:div (str route-key)]]]]]))
+        [:div.section
+         (condp = route-key
+           ::routes/_01-layout [layout/main-panel]
+           [:pre [:code route-key]])]]]]]))
