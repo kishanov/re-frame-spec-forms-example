@@ -1,4 +1,13 @@
-(ns re-frame-spec-forms.db)
+(ns re-frame-spec-forms.db
+  (:require [bide.core :as r]
+            [re-frame-spec-forms.routes :as routes]))
+
+
+
+(def router
+  (r/router [["/" ::routes/landing]
+             ["/01-layout" ::routes/_01-layout]]))
+
 
 (def default-db
-  {:name "re-frame"})
+  {::current-route-key ::routes/landing})
