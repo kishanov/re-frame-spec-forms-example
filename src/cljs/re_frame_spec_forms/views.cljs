@@ -33,6 +33,7 @@
        [:div.four.wide.column
         [steps route-key]]
        [:div.twelve.wide.column
+        ^{:key route-key}
         [:div.section
          (condp = route-key
            ::routes/_01-layout [layout/main-panel]

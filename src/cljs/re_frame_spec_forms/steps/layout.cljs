@@ -1,4 +1,6 @@
-(ns re-frame-spec-forms.steps.layout)
+(ns re-frame-spec-forms.steps.layout
+  (:require [re-frame-spec-forms.formatters :as formatters]
+            [cljs.repl :as r]))
 
 
 (defn form-layout []
@@ -47,7 +49,13 @@
 
 
 (defn main-panel []
-  [:div.ui.grid
-   [:div.one.column.row
-    [:div.eight.wide.column
-     [form-layout]]]])
+  [:div.ui.internally.celled.grid
+   [:div.two.column.row
+    [:div.column
+     [:h4.ui.dividing.header "Rendered form"]
+     [form-layout]]
+    [:div.column
+     [:h4.ui.dividing.header "Source code"]
+     [:pre
+      [:code {:class "clojure"}
+       (with-out-str (r/source form-layout))]]]]])

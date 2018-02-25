@@ -18,8 +18,10 @@
 
 (re-frame/reg-event-db
   ::initialize-db
-  (fn [_ _]
-    db/default-db))
+  (fn [db]
+    (if (::db/current-route-key db)
+      db
+      db/default-db)))
 
 
 (re-frame/reg-event-db
