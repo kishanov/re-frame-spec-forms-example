@@ -1,0 +1,19 @@
+{
+  "label": "My pool",
+  "preallocated": true,
+  "type": "transit",
+  "tags": [
+    "private",
+    "qa-env"
+  ],
+  "ranges": [
+    {
+      "first": 100,
+      "last": "499"
+    },
+    {
+      "first": 1000,
+      "last": "1100"
+    }
+  ]
+}
