@@ -4,20 +4,24 @@
             [re-frame-spec-forms.subs :as subs]
             [re-frame-spec-forms.routes :as routes]
 
-            [re-frame-spec-forms.steps.layout :as layout]))
+            [re-frame-spec-forms.steps.layout :as layout]
+            [re-frame-spec-forms.steps.spec-def :as spec-def] ))
 
 
 
 (defn steps [current-route-key]
   (->> (list [::routes/landing "Intro" ""]
-             [::routes/_01-layout "Layout" "Define form controls"])
+             [::routes/_01-layout "Layout" "Define form controls"]
+             [::routes/_02-spec "Spec" "Describe payload using clojure.spec"] )
        (map (fn [[route-key title desc]]
               [:div.step
                {:class    (when (= current-route-key route-key) "active")
                 :on-click #(re-frame/dispatch [::events/change-route-key route-key])}
                [:div.content
                 [:div.title title]
-                [:div.description desc]]]))
+                [:div.description
+                 {:style {:max-width "10em"}}
+                 desc]]]))
 
        (into [:div.ui.vertical.ordered.steps])))
 
@@ -37,4 +41,5 @@
         [:div.section
          (condp = route-key
            ::routes/_01-layout [layout/main-panel]
+           ::routes/_02-spec [spec-def/main-panel]
            [:pre [:code route-key]])]]]]]))
