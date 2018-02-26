@@ -29,7 +29,9 @@
 (re-frame/reg-event-db
   ::on-navigate
   (fn [db [_ name params query]]
-    (assoc db ::db/current-route-key name)))
+    (-> db
+        (assoc ::db/current-route-key name)
+        (assoc-in forms/root-db-path nil))))
 
 
 (re-frame/reg-event-db

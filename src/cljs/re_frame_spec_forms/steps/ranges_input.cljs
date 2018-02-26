@@ -36,6 +36,7 @@
                      [:i.red.trash.link.icon
                       {:on-click #(re-frame/dispatch [::forms/set-field-value form-id [:ranges]
                                                       (utils/vec-remove ranges i)])}]]]]))
+
            (into [:div.items]))
 
       [:button.ui.mini.teal.button
@@ -58,5 +59,5 @@
             [:h4.ui.dividing.header "Rendered form"]
             [ranges-input form-id]]
            [:div.column
-            [:h4.ui.dividing.header "Source code"]
+            [:h4.ui.dividing.header "Form value"]
             [formatters/inspect @(re-frame/subscribe [::forms/field-value form-id []]) true]]]])})))
