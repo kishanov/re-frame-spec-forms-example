@@ -7,16 +7,18 @@
             [re-frame-spec-forms.steps.layout]
             [re-frame-spec-forms.steps.spec-def]
             [re-frame-spec-forms.steps.label-input]
+            [re-frame-spec-forms.steps.ranges-input]
             [re-frame-spec-forms.steps.state]))
 
 
 
 (defn steps [current-route-key]
   (->> (list [::routes/landing "Intro" ""]
-             [::routes/_01-layout "Layout" "Define form controls"]
-             [::routes/_02-spec "Spec" "Describe payload using clojure.spec"]
-             [::routes/_03-label-input "Label input" "Define form control for label input"]
-             [::routes/_04-form-state "Form state" "Show form behavior during it's lifecycle"])
+             [::routes/layout "Layout" "Define form controls"]
+             [::routes/spec-def "Spec" "Describe payload using clojure.spec"]
+             [::routes/label-input "Label input" "Define form control for label input"]
+             [::routes/ranges-input "Ranges input" "Form controls to manage collection and nested elements"]
+             [::routes/form-state "Form state" "Show form behavior during it's lifecycle"])
        (map (fn [[route-key title desc]]
               [:div.step
                {:class    (when (= current-route-key route-key) "active")
@@ -44,8 +46,9 @@
         ^{:key route-key}
         [:div.section
          (condp = route-key
-           ::routes/_01-layout [re-frame-spec-forms.steps.layout/main-panel]
-           ::routes/_02-spec [re-frame-spec-forms.steps.spec-def/main-panel]
-           ::routes/_03-label-input [re-frame-spec-forms.steps.label-input/main-panel]
-           ::routes/_04-form-state [re-frame-spec-forms.steps.state/main-panel]
+           ::routes/layout [re-frame-spec-forms.steps.layout/main-panel]
+           ::routes/spec-def [re-frame-spec-forms.steps.spec-def/main-panel]
+           ::routes/label-input [re-frame-spec-forms.steps.label-input/main-panel]
+           ::routes/ranges-input [re-frame-spec-forms.steps.ranges-input/main-panel]
+           ::routes/form-state [re-frame-spec-forms.steps.state/main-panel]
            [:pre [:code route-key]])]]]]]))

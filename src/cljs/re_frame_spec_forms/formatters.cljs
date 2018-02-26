@@ -14,7 +14,8 @@
 
 
 (defn inspect [data & [pprint?]]
-  [:pre.details {:style {:text-align "left"}}
-   (if pprint?
-     (with-out-str (pp/pprint data))
-     (.stringify js/JSON (clj->js data) nil 2))])
+  [:pre
+   [:code
+    (if pprint?
+      (with-out-str (pp/pprint data))
+      (.stringify js/JSON (clj->js data) nil 2))]])
