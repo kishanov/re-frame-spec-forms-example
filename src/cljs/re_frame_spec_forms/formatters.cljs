@@ -11,3 +11,10 @@
     (with-out-str
       (pp/pprint
         data))]])
+
+
+(defn inspect [data & [pprint?]]
+  [:pre.details {:style {:text-align "left"}}
+   (if pprint?
+     (with-out-str (pp/pprint data))
+     (.stringify js/JSON (clj->js data) nil 2))])

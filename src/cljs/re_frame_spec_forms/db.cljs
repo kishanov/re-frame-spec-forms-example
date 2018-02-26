@@ -8,7 +8,8 @@
   (r/router [["/" ::routes/landing]
              ["/01-layout" ::routes/_01-layout]
              ["/02-spec" ::routes/_02-spec]
-             ]))
+             ["/03-label-input-field" ::routes/_03-label-input]
+             ["/04-form-state" ::routes/_04-form-state]]))
 
 
 (def default-db
