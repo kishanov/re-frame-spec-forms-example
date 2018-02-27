@@ -39,10 +39,11 @@
 
            (into [:div.items]))
 
-      [:button.ui.mini.teal.button
+      [:button.ui.mini.basic.teal.button
        {:on-click #(re-frame/dispatch [::forms/set-field-value form-id [:ranges]
                                        (conj (or ranges []) {})])}
-       "Add a range"]]]))
+       [:i.plus.circle.icon]
+       " Add a range"]]]))
 
 
 (defn main-panel []

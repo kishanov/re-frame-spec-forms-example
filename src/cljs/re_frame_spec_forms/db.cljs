@@ -9,9 +9,11 @@
              ["/layout" ::routes/layout]
              ["/spec" ::routes/spec-def]
              ["/label-input-field" ::routes/label-input]
+             ["/choice-providers" ::routes/choice-providers]
              ["/ranges-input-field" ::routes/ranges-input]
              ["/form-state" ::routes/form-state]]))
 
 
 (def default-db
-  {::current-route-key ::routes/landing})
+  {::current-route-key ::routes/landing
+   ::router            router})

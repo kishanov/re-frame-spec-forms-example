@@ -1,11 +1,13 @@
 (ns re-frame-spec-forms.model
-  (:require [cljs.spec.alpha :as s]))
+  (:require [cljs.spec.alpha :as s]
+            [re-frame-spec-forms.backend-sim :as back-end]
+            ))
 
 (s/def ::label (s/and string? #(<= 1 (count %) 64)))
 
 (s/def ::preallocated boolean?)
 
-(def supported-types #{"multihomed" "stub" "transit" "ixp"})
+(def supported-types (set (map :value back-end/asn-types)))
 (s/def ::type supported-types)
 
 (s/def ::tags (s/coll-of string?))

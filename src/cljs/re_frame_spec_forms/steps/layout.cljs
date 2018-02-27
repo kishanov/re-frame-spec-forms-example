@@ -39,7 +39,7 @@
        [:div.two.wide.field
         [:i.red.trash.icon]]]]]
 
-    [:button.ui.mini.teal.button
+    [:button.ui.mini.basic.teal.button
      [:i.plus.circle.icon]
      " Add a range"]]])
 
