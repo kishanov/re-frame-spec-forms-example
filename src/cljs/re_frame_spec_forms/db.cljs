@@ -6,11 +6,11 @@
 
 (def router
   (r/router [["/" ::routes/landing]
-             ["/01-layout" ::routes/layout]
-             ["/02-spec" ::routes/spec-def]
-             ["/03-label-input-field" ::routes/label-input]
-             ["/04-ranges-input-field" ::routes/ranges-input]
-             ["/05-form-state" ::routes/form-state]]))
+             ["/layout" ::routes/layout]
+             ["/spec" ::routes/spec-def]
+             ["/label-input-field" ::routes/label-input]
+             ["/ranges-input-field" ::routes/ranges-input]
+             ["/form-state" ::routes/form-state]]))
 
 
 (def default-db

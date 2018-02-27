@@ -11,17 +11,50 @@
             [re-frame-spec-forms.steps.state]))
 
 
+(defn landing []
+  [:div.ui.internally.celled.grid
+   [:div.two.column.row
+    [:div.column
+     [:h4.ui.dividing.header "About"]
+     [:p "Welcome to the example application "]]
+    [:div
+     [:h4.ui.dividing.header "Sample payload"]
+     [:pre
+      [:code
+       "{
+         \"label\": \"My pool\",
+         \"preallocated\": true,
+         \"type\": \"transit\",
+         \"tags\": [
+            \"private\",
+            \"qa-env\"
+          ],
+         \"ranges\": [
+           {
+             \"first\": 100,
+             \"last\": 499
+           },
+           {
+             \"first\": 1000,
+             \"last\": " 1100 "
+           }
+          ]
+        }"
+       ]]]]])
+
+
 
 (defn steps [current-route-key]
-  (->> (list [::routes/landing "Intro" ""]
-             [::routes/layout "Layout" "Define form controls"]
-             [::routes/spec-def "Spec" "Describe payload using clojure.spec"]
-             [::routes/label-input "Label input" "Define form control for label input"]
-             [::routes/ranges-input "Ranges input" "Form controls to manage collection and nested elements"]
+  (->> (list [::routes/landing "Introduction" ""]
+             [::routes/layout "Form layout" "Define form controls"]
+             [::routes/spec-def "Data model using spec" "Describe payload using clojure.spec"]
+             [::routes/label-input "First form control" "Define form control for label input"]
+             [::routes/ranges-input "Complex form controls" "Form controls to manage collections and nested elements"]
              [::routes/form-state "Form state" "Show form behavior during it's lifecycle"])
        (map (fn [[route-key title desc]]
               [:div.step
                {:class    (when (= current-route-key route-key) "active")
+                :style    {:cursor "pointer"}
                 :on-click #(re-frame/dispatch [::events/change-route-key route-key])}
                [:div.content
                 [:div.title title]
@@ -51,4 +84,4 @@
            ::routes/label-input [re-frame-spec-forms.steps.label-input/main-panel]
            ::routes/ranges-input [re-frame-spec-forms.steps.ranges-input/main-panel]
            ::routes/form-state [re-frame-spec-forms.steps.state/main-panel]
-           [:pre [:code route-key]])]]]]]))
+           [landing])]]]]]))
