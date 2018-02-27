@@ -29,23 +29,19 @@
 
    [:div.required.field
     [:label "Ranges"]
-    [:table.ui.table
-     [:thead
-      [:tr
-       [:th.seven.wide "First"]
-       [:th.seven.wide "Last"]
-       [:th.two.wide]]]
-     [:tbody
-      [:tr
-       [:td [:input {:type "number"}]]
-       [:td [:input {:type "number"}]]
-       [:td [:i.red.trash.icon]]]]
-     [:tfoot
-      [:tr
-       [:th {:col-span 3}
-        [:button.ui.mini.teal.button
-         [:i.plus.circle.icon]
-         " Add a range"]]]]]]])
+    [:div.ui.items
+     [:div.item
+      [:div.inline.fields
+       [:div.four.wide.field
+        [:input {:type "number" :placeholder "first"}]]
+       [:div.four.wide.field
+        [:input {:type "number" :placeholder "last"}]]
+       [:div.two.wide.field
+        [:i.red.trash.icon]]]]]
+
+    [:button.ui.mini.teal.button
+     [:i.plus.circle.icon]
+     " Add a range"]]])
 
 
 (defn main-panel []
