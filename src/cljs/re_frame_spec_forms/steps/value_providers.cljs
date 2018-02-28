@@ -8,11 +8,13 @@
 
 (defn types-radio-input [form-id]
   (let [field-path [:type]
-        field-value @(re-frame/subscribe [::forms/field-value form-id field-path])]
+        field-value @(re-frame/subscribe [::forms/field-value form-id field-path])
+        {:keys [::forms/submitting?]} @(re-frame/subscribe [::forms/form-flags form-id])]
     (into [:div.ui.grouped.fields
            [:label "Type"]]
           (map (fn [{:keys [label value]}]
                  [:div.field
+                  {:class (when submitting? "disabled")}
                   [:div.ui.radio.checkbox
                    [:input
                     {:type      "radio"
@@ -50,9 +52,7 @@
      [:div.two.column.row
       [:div.column
        [:h4.ui.dividing.header "Rendered form"]
-       [form-layout form-id]
-
-       ]
+       [form-layout form-id]]
       [:div.column
        [:h4.ui.dividing.header "Form value"]
        [formatters/inspect @(re-frame/subscribe [::forms/field-value form-id []]) true]]]]))

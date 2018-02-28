@@ -8,12 +8,14 @@
              & [{:keys [label field-classes attrs] :as options}]]
   (let [field-value @(re-frame/subscribe [::forms/field-value form-id field-path])
         show-validation-errors? @(re-frame/subscribe [::forms/show-validation-errors? form-id field-path field-spec])
+        {:keys [::forms/submitting?]} @(re-frame/subscribe [::forms/form-flags form-id])
         field-valid? (s/valid? field-spec field-value)
         show-errors? (and (not field-valid?) show-validation-errors?)]
 
     [:div.required.field
      {:class (cond->> (or field-classes (list))
                       show-errors? (cons "error")
+                      submitting? (cons "disabled")
                       true (clojure.string/join \space))}
 
      (when label

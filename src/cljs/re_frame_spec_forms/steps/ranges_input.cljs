@@ -10,7 +10,9 @@
 
 
 (defn ranges-input [form-id]
-  (let [ranges @(re-frame/subscribe [::forms/field-value form-id [:ranges]])]
+  (let [ranges @(re-frame/subscribe [::forms/field-value form-id [:ranges]])
+        {:keys [::forms/submitting?]} @(re-frame/subscribe [::forms/form-flags form-id])]
+
     [:div.ui.form
      [:div.required.field
       [:label "Ranges"]
@@ -34,14 +36,18 @@
 
                     [:div.four.wide.field
                      [:i.red.trash.link.icon
-                      {:on-click #(re-frame/dispatch [::forms/set-field-value form-id [:ranges]
-                                                      (utils/vec-remove ranges i)])}]]]]))
+                      {:class    (when submitting? "disabled")
+                       :on-click #(when-not submitting?
+                                    (re-frame/dispatch [::forms/set-field-value form-id [:ranges]
+                                                        (utils/vec-remove ranges i)]))}]]]]))
 
            (into [:div.items]))
 
       [:button.ui.mini.basic.teal.button
-       {:on-click #(re-frame/dispatch [::forms/set-field-value form-id [:ranges]
-                                       (conj (or ranges []) {})])}
+       {:class    (when submitting? "disabled")
+        :on-click #(when-not submitting?
+                     (re-frame/dispatch [::forms/set-field-value form-id [:ranges]
+                                         (conj (or ranges []) {})]))}
        [:i.plus.circle.icon]
        " Add a range"]]]))
 
