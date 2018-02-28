@@ -20,7 +20,9 @@
    [:div.two.column.row
     [:div.column
      [:h4.ui.dividing.header "About"]
-     [:p "Welcome to the example application "]]
+     [:p "This is an example application for the article about forms, re-frame and clojure.spec.
+      It walks the reader through the process of building a form for the payload presented on the right. "]]
+
     [:div
      [:h4.ui.dividing.header "Sample payload"]
      [formatters/inspect backend-sim/sample-asn-pool]]]])
@@ -36,9 +38,8 @@
              [::routes/ranges-input "Complex form controls" "Form controls to manage collections and nested elements"]
              [::routes/form-state "Form state" "Show form behavior during it's lifecycle"])
        (map (fn [[route-key title desc]]
-              [:div.step
+              [:a.step
                {:class    (when (= current-route-key route-key) "active")
-                :style    {:cursor "pointer"}
                 :on-click #(re-frame/dispatch [::events/change-route-key route-key])}
                [:div.content
                 [:div.title title]
